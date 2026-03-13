@@ -1,13 +1,9 @@
-let productsDiv = document.querySelector('#productsDiv');
-let table = document.querySelector('table tbody');
-let totalSpan = document.querySelector('#totalSpan');
-
-
-
-
+let productsDiv = document.querySelector("#productsDiv");
+let table = document.querySelector("table tbody");
+let totalSpan = document.querySelector("#totalSpan");
 
 let showProducts = () => {
-  productsDiv.innerHTML = '';
+  productsDiv.innerHTML = "";
   products.forEach((el, index) => {
     productsDiv.innerHTML += `
         <div class="col-4">
@@ -24,7 +20,6 @@ let showProducts = () => {
   });
 };
 
-
 let calcTotal = () => {
   let total = 0;
   cart.forEach((el) => {
@@ -33,9 +28,8 @@ let calcTotal = () => {
   totalSpan.textContent = total;
 };
 
-
 let showCart = () => {
-  table.innerHTML = '';
+  table.innerHTML = "";
   cart.forEach((el, index) => {
     table.innerHTML += `
     <tr>
@@ -70,11 +64,13 @@ let addToCart = (index) => {
   } else {
     cart[productIndexInCart].qty++;
   }
+  localStorage.setItem("cart", JSON.stringify(cart)) || [];
   showCart();
 };
 
 let incrementQty = (index) => {
   cart[index].qty++;
+  localStorage.setItem("cart", JSON.stringify(cart)) || [];
   showCart();
 };
 
@@ -84,11 +80,12 @@ let decrementQty = (index) => {
   } else {
     cart[index].qty--;
   }
+  localStorage.setItem("cart", JSON.stringify(cart)) || [];
   showCart();
 };
 
 let filterProducts = (brand) => {
-  if (brand == 'All') {
+  if (brand == "All") {
     products = orignalProducts;
   } else {
     let viewProducts = orignalProducts.filter((el) => {

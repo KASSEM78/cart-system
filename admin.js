@@ -18,7 +18,7 @@ let showProducts = () => {
             </td>
             <td>
                 <button class="btn btn-danger">Edit</button>
-                <button class="btn btn-primary">Remove</button>
+                <button class="btn btn-primary" onclick="removeProduct(${index})">Remove</button>
             </td>
         </tr>
         `;
@@ -33,8 +33,15 @@ let addNewProduct = () => {
     img: phoneImg.value,
   };
   orignalProducts.push(newProduct);
-  let productJSON = JSON.stringify(orignalProducts)
-  localStorage.setItem('products',productJSON)
+  let productJSON = JSON.stringify(orignalProducts);
+  localStorage.setItem("products", productJSON);
+  showProducts();
+};
+
+let removeProduct = (index) => {
+  orignalProducts.splice(index,1)
+  let proRemove = JSON.stringify(orignalProducts)
+  localStorage.setItem('products',proRemove)
   showProducts();
 };
 
